@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>修改学生信息页面</title>
+	<link rel="stylesheet" href="../static/layer/theme/default/layer.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/reponse.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/lib/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/custom.css">
+	<style type="text/css">
+		.alertceng{
+			background: #FFFFFF;
+			padding: 10px;
+			display: none;
+		}
+		.alertceng span.title{
+			margin-right: 30px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="layui-fluid layadmin-homepage-fluid" style="background: #fff;width:90%;margin:0 auto;">
+		<div id="page">
+			<h1>学生成绩信息管理</h1>
+			<table id="table" class="reponsetable" ></table>
+
+		    <div class="btn-container">
+                <a class="layui-btn" href="{{ url_for('index') }}">返回首页</a>
+			</div>
+			<form class="form-horizontal" id="input_form" method="post" onsubmit="return submitInfo();">
+				<fieldset>
+
+					<legend>修改学生信息</legend>
+
+                {% for i in all %}
+					<div class="control-group">
+  							<label class="control-label" for="">专业</label>
+  							<div class="controls">
+    							<label class="radio inline" for="multipleradiosinline-0-0">
+      								<input type="radio" name="major" id="radio_computer" value="人工智能" checked="checked">
+      								人工智能
+    							</label>
+    							<label class="radio inline" for="multipleradiosinline-0-1">
+      								<input type="radio" name="major" id="radio_iot" value="大数据">
+      								大数据
+    							</label>
+    							<label class="radio inline" for="multipleradiosinline-0-2">
+      								<input type="radio" name="major" id="radio_tongxin" value="全栈">
+      								全栈
+    							</label>
+  							</div>
+					</div>
+
+
+					<div class="control-group">
+  							<label class="control-label" for="selectbasic-0" >年级</label>
+  							<div class="controls">
+    							<select id="select_grade" name="grade"  class="input-xlarge">
+      								<option>1901</option>
+      								<option>1902</option>
+      								<option>1903</option>
+      								<option>1904</option>
+      								<option>1905</option>
+    							</select>
+  							</div>
+					</div>
+
+					<div class="control-group">
+  							<label class="control-label" for="textinput-1">学号</label>
+  							<div class="controls">
+    							<input id="input_id" name="id" type="text" class="input-xlarge" placeholder="{{ i.id }}" onblur="return checkId();">
+    							<label id="idNumWarn"> </label>
+  							</div>
+					</div>
+
+
+					<div class="control-group">
+  							<label class="control-label" for="textinput-2">姓名</label>
+  							<div class="controls">
+    							<input id="input_name" name="name" type="text" placeholder="{{ i.name }}" class="input-xlarge" onblur="return checkName();">
+    							<label id="nameWarn"> </label>
+  							</div>
+					</div>
+
+
+					<div class="control-group">
+  							<label class="control-label" for="">性别</label>
+  							<div class="controls">
+    							<label class="radio inline" for="multipleradiosinline-2-0" >
+      								<input type="radio" name="sex" id="radio_man" value="男" checked="checked" >
+      								男
+    							</label>
+    							<label class="radio inline" for="multipleradiosinline-2-0">
+      								<input type="radio" name="sex" id="radio_women" value="女">
+      								女
+    							</label>
+  							</div>
+					</div>
+
+					<div class="control-group">
+  							<label class="control-label" for="textinput-3">年龄</label>
+  							<div class="controls">
+    							<input id="input_score" name="age" type="text" class="input-xlarge" placeholder="{{ i.age }}">
+    							<label id="scoreWarn"> </label>
+  							</div>
+					</div>
+
+                    <div class="control-group">
+  							<label class="control-label" for="textinput-3">成绩</label>
+  							<div class="controls">
+    							<input  name="score" type="text" placeholder="score" class="input-xlarge" onblur="return checkScore();">
+    							<label id="scoreWarn"> </label>
+  							</div>
+					</div>
+            {% endfor %}
+				</fieldset>
+				<div class="btn-container" style="display:block" id="btn_add">
+                    <input class="layui-btn" type="submit" value="确认修改">
+				</div>
+
+			</form>
+
+
+
+			<table id="search_table" class="reponsetable" ></table>
+			<legend><h6>©北网学生教育</h6></legend>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
